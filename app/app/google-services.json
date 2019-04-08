@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "1041354165804",
+    "firebase_url": "https://conexaodescontos.firebaseio.com",
+    "project_id": "conexaodescontos",
+    "storage_bucket": "conexaodescontos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041354165804:android:9d8f6cdd1160bee1",
+        "android_client_info": {
+          "package_name": "com.smartz.conexaodescontos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041354165804-shhic313flq283jnb01139obhpici4fq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartz.conexaodescontos",
+            "certificate_hash": "39a762cb198bb547be34c9a50b52bb67fffde4a2"
+          }
+        },
+        {
+          "client_id": "1041354165804-c9rbk3f6r3addbah9cob5rd7j8hro96t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartz.conexaodescontos",
+            "certificate_hash": "af5dba2d1f74e4084eec2ee9f41eb9c4e0a6dcb5"
+          }
+        },
+        {
+          "client_id": "1041354165804-f9sg53q5f0e0iuseddsc65doosv0hep3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5uWWf-0qZWlADZ77_tC5PGWo92LC0JAo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041354165804-f9sg53q5f0e0iuseddsc65doosv0hep3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
