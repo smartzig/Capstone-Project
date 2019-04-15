@@ -1,9 +1,11 @@
-package com.smartz.conexaodescontos;
+package com.smartz.conexaodescontos.adapter;
 
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +17,24 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.smartz.conexaodescontos.R;
+
+import com.smartz.conexaodescontos.model.Company;
+import com.smartz.conexaodescontos.model.Promotion;
+import com.smartz.conexaodescontos.ui.PromotionDetailActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,11 +66,12 @@ public class PromotionRecyclerViewAdapter extends RecyclerView.Adapter<Promotion
             public void onClick(View view) {
                 mPromotionPosition = vh.getAdapterPosition();
 
-               Promotion promotion =  promotionList.get(mPromotionPosition);
+               final Promotion promotion =  promotionList.get(mPromotionPosition);
 
-                Intent intent = new Intent(context,PromotionDetailActivity.class);
+                Intent intent = new Intent(context, PromotionDetailActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(EXTRA_PROMOTION_KEY, promotion);
+
 
 
                 context.startActivity(intent);
@@ -66,7 +81,6 @@ public class PromotionRecyclerViewAdapter extends RecyclerView.Adapter<Promotion
         return vh;
 
     }
-
 
     @Override
     public void onBindViewHolder(PromotionRecyclerViewAdapter.ViewHolder holder, int position) {

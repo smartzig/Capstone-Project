@@ -1,10 +1,6 @@
-package com.smartz.conexaodescontos;
+package com.smartz.conexaodescontos.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -13,11 +9,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.smartz.conexaodescontos.model.Promotion;
+import com.smartz.conexaodescontos.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;

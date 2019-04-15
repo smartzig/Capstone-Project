@@ -1,16 +1,25 @@
-package com.smartz.conexaodescontos;
+package com.smartz.conexaodescontos.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-class Locality implements Parcelable {
+
+public class Company implements Parcelable {
+
+    @SerializedName("id")
+    private Long id;
+
+
+    @SerializedName("name")
+    private String name;
+
 
     @SerializedName("address")
     private String address;
 
-        @SerializedName("city")
+    @SerializedName("city")
     private String city;
 
     @SerializedName("country")
@@ -29,7 +38,10 @@ class Locality implements Parcelable {
     @SerializedName("zipcode")
     private String zipcode;
 
-    private Locality(Parcel in) {
+    public Company(){}
+    private Company(Parcel in) {
+        id = in.readLong();
+        name = in.readString();
         address = in.readString();
         city = in.readString();
         country = in.readString();
@@ -38,19 +50,17 @@ class Locality implements Parcelable {
         state = in.readString();
         zipcode = in.readString();
 
-
-
     }
-    public Locality(){}
-    public static final Parcelable.Creator<Locality> CREATOR = new Parcelable.Creator<Locality>() {
+
+    public static final Creator<Company> CREATOR = new Creator<Company>() {
         @Override
-        public Locality createFromParcel(Parcel in) {
-            return new Locality(in);
+        public Company createFromParcel(Parcel in) {
+            return new Company(in);
         }
 
         @Override
-        public Locality[] newArray(int size) {
-            return new Locality[size];
+        public Company[] newArray(int size) {
+            return new Company[size];
         }
     };
 
@@ -61,6 +71,8 @@ class Locality implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(name);
         parcel.writeString(address);
         parcel.writeString(city);
         parcel.writeString(country);
@@ -71,31 +83,75 @@ class Locality implements Parcelable {
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getAddress() {
         return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
         return city;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public String getCountry() {
         return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getLatitude() {
         return latitude;
     }
 
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
     public String getLongitude() {
         return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getState() {
         return state;
     }
 
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public String getZipcode() {
         return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 }

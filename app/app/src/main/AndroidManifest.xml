@@ -15,26 +15,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DiscountListActivity" />
 
-        <activity android:name=".PromotionDetailActivity"
-            android:parentActivityName=".DiscountListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DiscountListActivity" />
+        <activity android:name=".ui.LoginActivity">
         </activity>
 
+        <activity android:name=".ui.DiscountListActivity" />
 
+        <activity
+            android:name=".ui.PromotionDetailActivity"
+            android:parentActivityName=".ui.DiscountListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.DiscountListActivity" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

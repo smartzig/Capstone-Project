@@ -1,17 +1,14 @@
-package com.smartz.conexaodescontos;
+package com.smartz.conexaodescontos.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.ServerTimestamp;
 import com.google.gson.annotations.SerializedName;
 
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Promotion implements Parcelable {
 
@@ -21,11 +18,17 @@ public class Promotion implements Parcelable {
     @SerializedName("desc")
     private String desc;
 
+    @SerializedName("detailDesc")
+    private String detailDesc;
+
     @SerializedName("name")
     private String name;
 
     @SerializedName("price")
     private Double price;
+
+    @SerializedName("companyId")
+    private Long companyId;
 
     @SerializedName("companyName")
     private String companyName;
@@ -43,42 +46,17 @@ public class Promotion implements Parcelable {
     @SerializedName("validUntilDt")
     private Date validUntilDt;
 
-    @SerializedName("companyId")
-    private Long companyId;
+    @SerializedName("company")
+    private Company company;
 
-
-    private Promotion(Parcel in) {
-        id = in.readLong();
-        desc = in.readString();
-        name = in.readString();
-        price = in.readDouble();
-        validUntilDt = (Date) in.readSerializable();
-        imageUrl = in.readString();
-        companyName = in.readString();
-        priceMessage = in.readString();
-        discount = in.readString();
-        companyId = in.readLong();
-    }
-    public Promotion(Long id, String desc, String name, Double price,
-                     Date validUntilDt,String companyName,  String imageUrl,  String priceMessage, String discount) {
-        this.id = id;
-        this.desc = desc;
-        this.name = name;
-        this.price = price;
-        this.validUntilDt = validUntilDt;
-        this.imageUrl = imageUrl;
-        this.companyName = companyName;
-        this.priceMessage = priceMessage;
-        this.discount = discount;
-    }
 
     public Promotion(){}
 
     public Long getId() {
         return id;
     }
-    public void setId(Long id)
-    {
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -86,17 +64,40 @@ public class Promotion implements Parcelable {
         return desc;
     }
 
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getDetailDesc() {
+        return detailDesc;
+    }
+
+    public void setDetailDesc(String detailDesc) {
+        this.detailDesc = detailDesc;
+    }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public Date getValidUntilDt() {
-        return validUntilDt;
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
     public String getCompanyName() {
@@ -105,6 +106,14 @@ public class Promotion implements Parcelable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getPriceMessage() {
@@ -119,16 +128,24 @@ public class Promotion implements Parcelable {
         return discount;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public Date getValidUntilDt() {
+        return validUntilDt;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public void setValidUntilDt(Date validUntilDt) {
+        this.validUntilDt = validUntilDt;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public boolean isValid()
@@ -155,18 +172,44 @@ public class Promotion implements Parcelable {
         return 0;
     }
 
+    private Promotion(Parcel in) {
+        id = in.readLong();
+        desc = in.readString();
+        detailDesc = in.readString();
+        name = in.readString();
+
+
+        validUntilDt = (Date) in.readSerializable();
+
+        imageUrl = in.readString();
+
+        companyName = in.readString();
+        companyId = in.readLong();
+
+        price = in.readDouble();
+        priceMessage = in.readString();
+        discount = in.readString();
+
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+
         parcel.writeLong(id);
         parcel.writeString(desc);
+        parcel.writeString(detailDesc);
+
         parcel.writeString(name);
-        parcel.writeDouble(price);
+
         parcel.writeSerializable(validUntilDt);
         parcel.writeString(imageUrl);
+        parcel.writeLong(companyId);
         parcel.writeString(companyName);
+
+        parcel.writeDouble(price);
         parcel.writeString(priceMessage);
         parcel.writeString(discount);
-        parcel.writeLong(companyId);
+
     }
 
 }

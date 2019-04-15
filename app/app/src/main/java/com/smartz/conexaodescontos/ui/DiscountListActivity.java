@@ -1,6 +1,5 @@
-package com.smartz.conexaodescontos;
+package com.smartz.conexaodescontos.ui;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,17 +8,22 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.smartz.conexaodescontos.model.Company;
+import com.smartz.conexaodescontos.model.Promotion;
+import com.smartz.conexaodescontos.adapter.PromotionRecyclerViewAdapter;
+import com.smartz.conexaodescontos.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,15 +78,28 @@ public class DiscountListActivity extends AppCompatActivity {
                             return;
                         }
 
-                        List<Promotion> promotionList = new ArrayList<>();
+                        final List<Promotion> promotionList = new ArrayList<>();
 
                         for (DocumentSnapshot doc : documentSnapshots) {
-                            Promotion promotion = doc.toObject(Promotion.class);
-                            promotion.setId(Long.parseLong(doc.getId()));
+                            final Promotion promotion = doc.toObject(Promotion.class);
 
+                            DocumentReference docRef = firestoreDB
+                                    .collection("company")
+                                    .document("" + Objects.requireNonNull(promotion).getCompanyId());
+
+                            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
+                                          {
+
+                                              @Override
+                                              public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                  promotion.setCompany(documentSnapshot.toObject(Company.class));
+
+                                              }
+                                          });
 
                             promotionList.add(promotion);
                         }
+
 
                         mAdapter = new PromotionRecyclerViewAdapter(promotionList, getApplicationContext(), firestoreDB);
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
