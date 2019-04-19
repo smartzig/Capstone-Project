@@ -1,7 +1,12 @@
 package com.smartz.conexaodescontos.model;
 
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.Relation;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.firebase.firestore.ServerTimestamp;
 import com.google.gson.annotations.SerializedName;
@@ -9,9 +14,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Calendar;
 import java.util.Date;
-
+@Entity
 public class Promotion implements Parcelable {
-
+    @NonNull
+    @PrimaryKey
     @SerializedName("id")
     private Long id;
 
@@ -21,17 +27,17 @@ public class Promotion implements Parcelable {
     @SerializedName("detailDesc")
     private String detailDesc;
 
-    @SerializedName("name")
-    private String name;
+    @SerializedName("promotionName")
+    private String promotionName;
 
     @SerializedName("price")
     private Double price;
 
-    @SerializedName("companyId")
-    private Long companyId;
+    @SerializedName("companyRefId")
+    private String companyRefId;
 
-    @SerializedName("companyName")
-    private String companyName;
+    @SerializedName("companyRefName")
+    private String companyRefName;
 
     @SerializedName("imageUrl")
     private String imageUrl;
@@ -46,6 +52,7 @@ public class Promotion implements Parcelable {
     @SerializedName("validUntilDt")
     private Date validUntilDt;
 
+    @Embedded
     @SerializedName("company")
     private Company company;
 
@@ -76,12 +83,12 @@ public class Promotion implements Parcelable {
         this.detailDesc = detailDesc;
     }
 
-    public String getName() {
-        return name;
+    public String getPromotionName() {
+        return promotionName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
     }
 
     public Double getPrice() {
@@ -92,20 +99,21 @@ public class Promotion implements Parcelable {
         this.price = price;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+
+    public String getCompanyRefId() {
+        return companyRefId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setCompanyRefId(String companyRefId) {
+        this.companyRefId = companyRefId;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getCompanyRefName() {
+        return companyRefName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCompanyRefName(String companyRefName) {
+        this.companyRefName = companyRefName;
     }
 
     public String getImageUrl() {
@@ -176,16 +184,15 @@ public class Promotion implements Parcelable {
         id = in.readLong();
         desc = in.readString();
         detailDesc = in.readString();
-        name = in.readString();
+        promotionName = in.readString();
 
 
         validUntilDt = (Date) in.readSerializable();
 
         imageUrl = in.readString();
 
-        companyName = in.readString();
-        companyId = in.readLong();
-
+        companyRefId = in.readString();
+        companyRefName = in.readString();
         price = in.readDouble();
         priceMessage = in.readString();
         discount = in.readString();
@@ -199,12 +206,12 @@ public class Promotion implements Parcelable {
         parcel.writeString(desc);
         parcel.writeString(detailDesc);
 
-        parcel.writeString(name);
+        parcel.writeString(promotionName);
 
         parcel.writeSerializable(validUntilDt);
         parcel.writeString(imageUrl);
-        parcel.writeLong(companyId);
-        parcel.writeString(companyName);
+        parcel.writeString(companyRefId);
+        parcel.writeString(companyRefName);
 
         parcel.writeDouble(price);
         parcel.writeString(priceMessage);

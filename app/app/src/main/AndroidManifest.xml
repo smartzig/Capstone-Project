@@ -15,7 +15,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.SplashActivity"
+        <service
+            android:name=".UpdateWidgetService"
+            android:exported="false"/>
+
+        <receiver
+            android:name=".PromotionAppWidget"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/promotion_app_widget_info" />
+        </receiver>
+
+        <activity
+            android:name=".ui.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,15 +42,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.LoginActivity">
-        </activity>
-
-        <activity android:name=".ui.DiscountListActivity" />
-
+        <activity android:name=".ui.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.DiscountListActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.PromotionDetailActivity"
             android:parentActivityName=".ui.DiscountListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

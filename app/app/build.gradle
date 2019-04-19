@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -10,10 +11,25 @@ android {
         versionName "1.0"
 
     }
+
+    // Load keystore
+    def configPropertiesFile = rootProject.file("keystore.properties")
+    def configProperties = new Properties()
+    configProperties.load(new FileInputStream(configPropertiesFile))
+
+    signingConfigs {
+        release {
+            storeFile file(configProperties['keystore'])
+            storePassword configProperties['keystore.password']
+            keyAlias configProperties['keyAlias']
+            keyPassword configProperties['keyPassword']
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     buildToolsVersion '28.0.3'
@@ -38,6 +54,13 @@ dependencies {
     //firebase database
     implementation 'com.google.firebase:firebase-firestore:18.2.0'
 
+    //gqr-code generation
+    implementation 'com.google.zxing:core:3.2.1'
+
+
+    //ROOM
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -46,5 +69,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'android.arch.lifecycle:livedata:1.1.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -1,13 +1,25 @@
 <resources>
-    <string name="app_name">Login FireBase</string>
-    <string name="email_id">email id</string>
-    <string name="password">password</string>
+    <string name="app_name">Conexão Descontos</string>
+    <string name="email_id">e-mail</string>
+    <string name="password">senha</string>
     <string name="login">Login</string>
-    <string name="failed">Authentication failed</string>
-    <string name="image">image</string>
-    <string name="create_a_new_account">Create a new Account!</string>
+    <string name="failed">Autenticação falhou</string>
+    <string name="login_google">Acesse usando Google</string>
+    <string name="image_filler">carregando</string>
 
-    <string name="action_share">Share</string>
+    <string name="create_a_new_account">Criar uma nova conta!</string>
+
+    <string name="action_share">Compartilhe</string>
+
+    //Details page
+    <string name="valid_until">Válido até: </string>
+    <string name="generate_qrcode">Gerar QRCode </string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="appwidget_conten">Última compra</string>
+
+    <string name="appwidget_empty">Nenhuma compra</string>
+
 
 
 </resources>

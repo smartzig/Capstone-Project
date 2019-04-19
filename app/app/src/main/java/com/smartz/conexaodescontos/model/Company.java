@@ -1,15 +1,19 @@
 package com.smartz.conexaodescontos.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-
+@Entity
 public class Company implements Parcelable {
-
+    @NonNull
+    @PrimaryKey
     @SerializedName("id")
-    private Long id;
+    private Long companyId;
 
 
     @SerializedName("name")
@@ -40,7 +44,7 @@ public class Company implements Parcelable {
 
     public Company(){}
     private Company(Parcel in) {
-        id = in.readLong();
+        companyId = in.readLong();
         name = in.readString();
         address = in.readString();
         city = in.readString();
@@ -71,7 +75,7 @@ public class Company implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(id);
+        parcel.writeLong(companyId);
         parcel.writeString(name);
         parcel.writeString(address);
         parcel.writeString(city);
@@ -83,12 +87,13 @@ public class Company implements Parcelable {
 
     }
 
-    public Long getId() {
-        return id;
+    @NonNull
+    public Long getCompanyId() {
+        return companyId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCompanyId(@NonNull Long companyId) {
+        this.companyId = companyId;
     }
 
     public String getName() {

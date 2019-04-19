@@ -1,13 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/promotion_list_item_CardView"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/widget_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,13 +13,6 @@
         android:baselineAligned="false">
 
 
-        <ImageView
-            android:id="@+id/ivPromoImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/image_filler"
-            android:scaleType="fitXY"
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +22,7 @@
             android:baselineAligned="false">
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/tvWidgetName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -45,7 +33,7 @@
                 android:baselineAligned="false"/>
 
             <TextView
-                android:id="@+id/tvDiscount"
+                android:id="@+id/tvWidgetDiscount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -62,7 +50,7 @@
 
 
         <TextView
-            android:id="@+id/tvDesc"
+            android:id="@+id/tvWidgetDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -78,7 +66,7 @@
             android:baselineAligned="false">
 
             <TextView
-                android:id="@+id/tvCompanyName"
+                android:id="@+id/tvWidgetCompanyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -86,7 +74,7 @@
                 android:text="Company Name" />
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvWidgetPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -98,8 +86,16 @@
 
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivWidgetcrcode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/qrcode_height"
+            android:contentDescription="@string/image_filler"
+            android:layout_gravity="center"
+            android:scaleType="fitXY" />
     </LinearLayout>
 
 
 
-</android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -85,7 +85,7 @@ public class DiscountListActivity extends AppCompatActivity {
 
                             DocumentReference docRef = firestoreDB
                                     .collection("company")
-                                    .document("" + Objects.requireNonNull(promotion).getCompanyId());
+                                    .document("" + Objects.requireNonNull(promotion).getCompanyRefId());
 
                             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
                                           {
