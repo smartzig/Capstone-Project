@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.smartz.conexaodescontos">
+
+    <uses-permission
+            android:name="android.permission.INTERNET"/> <!-- USE_CREDENTIALS is necessary for Google+ login -->
+    <uses-permission
+            android:name="android.permission.USE_CREDENTIALS"/> <!-- GET_ACCOUNTS is necessary to display email address of logged in user. This permission is optional -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <service
+                android:name=".UpdateWidgetService"
+                android:exported="false"/>
+
+        <receiver
+                android:name=".PromotionAppWidget"
+                android:icon="@mipmap/ic_launcher"
+                android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/promotion_app_widget_info"/>
+        </receiver>
+
+        <activity
+                android:name=".ui.SplashActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.DiscountListActivity" android:screenOrientation="portrait"/>
+        <activity
+                android:name=".ui.PromotionDetailActivity"
+                android:parentActivityName=".ui.DiscountListActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ui.DiscountListActivity"/>
+        </activity>
+
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version"/>
+    </application>
+
+</manifest>
